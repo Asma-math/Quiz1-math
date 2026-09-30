@@ -5,251 +5,1241 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f8fc">
   <title>اختبار قصير | القيمة المنزلية</title>
+
   <style>
-    :root { --ink:#263247; --muted:#69758a; --line:#e5e9f1; --accent:#5268c9; --accent-soft:#eef0ff; --good:#18794e; --bad:#b42318; --paper:#fff; --bg:#f7f8fc; }
-    * { box-sizing:border-box; }
-    body { margin:0; color:var(--ink); background:var(--bg); font-family:Tahoma,Arial,sans-serif; line-height:1.7; }
-    .wrap { width:min(760px, calc(100% - 28px)); margin:34px auto; }
-    .card { background:var(--paper); border:1px solid var(--line); border-radius:18px; box-shadow:0 8px 28px rgba(35,48,75,.06); padding:clamp(20px,4vw,36px); }
-    header { text-align:center; margin-bottom:24px; }
-    h1 { font-size:clamp(1.45rem,4vw,2rem); margin:0 0 5px; color:#263b75; }
-    .subtitle { color:var(--muted); margin:0; }
-    .name-label { display:block; font-weight:700; margin:18px 0 7px; }
-    input[type="text"] { width:100%; border:1px solid #cfd6e4; border-radius:10px; padding:12px 14px; font:inherit; outline:none; }
-    input[type="text"]:focus { border-color:var(--accent); box-shadow:0 0 0 3px #5268c922; }
-    .question { border:1px solid var(--line); border-radius:13px; padding:17px; margin:16px 0; }
-    .question legend { font-weight:700; padding:0 5px; }
-    .prompt { margin:1px 0 12px; }
-    .q-image { display:block; max-width:100%; max-height:280px; width:auto; height:auto; object-fit:contain; margin:12px auto; border-radius:9px; }
-    .choice { display:flex; align-items:flex-start; gap:10px; border:1px solid #e8ebf2; border-radius:9px; padding:9px 11px; margin:8px 0; cursor:pointer; transition:background .15s,border-color .15s; }
-    .choice:hover { background:#f8f9ff; border-color:#bbc4ef; }
-    .choice input { margin:5px 0 0; accent-color:var(--accent); flex:0 0 auto; }
-    .actions { text-align:center; margin-top:22px; }
-    button { border:0; border-radius:10px; background:var(--accent); color:#fff; padding:12px 27px; font:inherit; font-weight:700; cursor:pointer; }
-    button:hover { background:#4056b5; }
-    .error { color:var(--bad); font-size:.94rem; margin:12px 0 0; min-height:1.6em; }
-    .teacher { text-align:center; color:var(--muted); font-size:.9rem; margin-top:22px; }
-    .result-top { text-align:center; background:var(--accent-soft); border-radius:13px; padding:20px; margin-bottom:18px; }
-    .result-top h2 { margin:0; font-size:1.25rem; }
-    .score { color:#34499d; font-weight:700; font-size:1.55rem; margin:5px 0; }
-    .feedback { margin:0; }
-    .answer-row { border:1px solid var(--line); border-radius:10px; padding:13px 15px; margin:10px 0; }
-    .answer-row.correct { border-right:4px solid var(--good); }
-    .answer-row.incorrect { border-right:4px solid #d97706; }
-    .answer-row h3 { font-size:1rem; margin:0 0 6px; }
-    .answer-row p { margin:3px 0; color:#48556c; }
-    .correct-text { color:var(--good)!important; font-weight:700; }
-    .incorrect-text { color:#9a4d00!important; font-weight:700; }
-    [hidden] { display:none!important; }
-    @media (max-width:520px) { .wrap { margin:14px auto; } .card { padding:17px; border-radius:14px; } .question { padding:13px; } }
+    :root {
+      --ink:#263247;
+      --muted:#69758a;
+      --line:#e5e9f1;
+      --accent:#5268c9;
+      --accent-soft:#eef0ff;
+      --good:#18794e;
+      --bad:#b42318;
+      --paper:#fff;
+      --bg:#f7f8fc;
+    }
+
+    * {
+      box-sizing:border-box;
+    }
+
+    body {
+      margin:0;
+      color:var(--ink);
+      background:var(--bg);
+      font-family:Tahoma,Arial,sans-serif;
+      line-height:1.7;
+    }
+
+    .wrap {
+      width:min(760px, calc(100% - 28px));
+      margin:34px auto;
+    }
+
+    .card {
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 8px 28px rgba(35,48,75,.06);
+      padding:clamp(20px,4vw,36px);
+    }
+
+    header {
+      text-align:center;
+      margin-bottom:24px;
+    }
+
+    h1 {
+      font-size:clamp(1.45rem,4vw,2rem);
+      margin:0 0 5px;
+      color:#263b75;
+    }
+
+    .subtitle {
+      color:var(--muted);
+      margin:0;
+    }
+
+    .name-label {
+      display:block;
+      font-weight:700;
+      margin:18px 0 7px;
+    }
+
+    input[type="text"] {
+      width:100%;
+      border:1px solid #cfd6e4;
+      border-radius:10px;
+      padding:12px 14px;
+      font:inherit;
+      outline:none;
+    }
+
+    input[type="text"]:focus {
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px #5268c922;
+    }
+
+    .question {
+      border:1px solid var(--line);
+      border-radius:13px;
+      padding:17px;
+      margin:16px 0;
+    }
+
+    .question legend {
+      font-weight:700;
+      padding:0 5px;
+    }
+
+    .prompt {
+      margin:1px 0 12px;
+    }
+
+    .q-image {
+      display:block;
+      max-width:100%;
+      max-height:280px;
+      width:auto;
+      height:auto;
+      object-fit:contain;
+      margin:12px auto;
+      border-radius:9px;
+    }
+
+    .choice {
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      border:1px solid #e8ebf2;
+      border-radius:9px;
+      padding:9px 11px;
+      margin:8px 0;
+      cursor:pointer;
+      transition:background .15s,border-color .15s;
+    }
+
+    .choice:hover {
+      background:#f8f9ff;
+      border-color:#bbc4ef;
+    }
+
+    .choice input {
+      margin:5px 0 0;
+      accent-color:var(--accent);
+      flex:0 0 auto;
+    }
+
+    .actions {
+      text-align:center;
+      margin-top:22px;
+    }
+
+    button {
+      border:0;
+      border-radius:10px;
+      background:var(--accent);
+      color:#fff;
+      padding:12px 27px;
+      font:inherit;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    button:hover {
+      background:#4056b5;
+    }
+
+    .error {
+      color:var(--bad);
+      font-size:.94rem;
+      margin:12px 0 0;
+      min-height:1.6em;
+    }
+
+    .teacher {
+      text-align:center;
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:22px;
+    }
+
+    .result-top {
+      text-align:center;
+      background:var(--accent-soft);
+      border-radius:13px;
+      padding:20px;
+      margin-bottom:18px;
+    }
+
+    .result-top h2 {
+      margin:0;
+      font-size:1.25rem;
+    }
+
+    .score {
+      color:#34499d;
+      font-weight:700;
+      font-size:1.55rem;
+      margin:5px 0;
+    }
+
+    .feedback {
+      margin:0;
+    }
+
+    .answer-row {
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:13px 15px;
+      margin:10px 0;
+    }
+
+    .answer-row.correct {
+      border-right:4px solid var(--good);
+    }
+
+    .answer-row.incorrect {
+      border-right:4px solid #d97706;
+    }
+
+    .answer-row h3 {
+      font-size:1rem;
+      margin:0 0 6px;
+    }
+
+    .answer-row p {
+      margin:3px 0;
+      color:#48556c;
+    }
+
+    .correct-text {
+      color:var(--good)!important;
+      font-weight:700;
+    }
+
+    .incorrect-text {
+      color:#9a4d00!important;
+      font-weight:700;
+    }
+
+    [hidden] {
+      display:none!important;
+    }
+
+    @media (max-width:520px) {
+      .wrap {
+        margin:14px auto;
+      }
+
+      .card {
+        padding:17px;
+        border-radius:14px;
+      }
+
+      .question {
+        padding:13px;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <main class="wrap">
-    <section class="card" id="quizCard">
-      <header>
-        <h1>اختبار قصير: القيمة المنزلية</h1>
-        <p class="subtitle">اختاري الإجابة الصحيحة</p>
-      </header>
-      <form id="quizForm" novalidate>
-        <label class="name-label" for="studentName">اسم الطالبة</label>
-        <input id="studentName" name="studentName" type="text" autocomplete="name" required maxlength="80" placeholder="اكتبي اسمك هنا">
 
-        <fieldset class="question" data-q="1">
-          <legend>السؤال ١</legend>
-          <p class="prompt">اكتبي العدد الذي يمثِّله النموذج الآتي.</p>
-          <img class="q-image" src="assets/question-01.png" alt="نموذج لوح مئات وأعمدة عشرات ومكعبات آحاد" onerror="this.hidden=true">
-          <label class="choice"><input type="radio" name="q1" value="١٩٢"><span>١٩٢</span></label>
-          <label class="choice"><input type="radio" name="q1" value="٢٠٢"><span>٢٠٢</span></label>
-          <label class="choice"><input type="radio" name="q1" value="٢١٢"><span>٢١٢</span></label>
-          <label class="choice"><input type="radio" name="q1" value="٢٠٠"><span>٢٠٠</span></label>
-        </fieldset>
+<main class="wrap">
 
-        <fieldset class="question" data-q="2">
-          <legend>السؤال ٢</legend>
-          <p class="prompt">اكتبي العدد الذي يمثِّله النموذج الآتي.</p>
-          <img class="q-image" src="assets/question-02.png" alt="نموذج للقيمة المنزلية" onerror="this.hidden=true">
-          <label class="choice"><input type="radio" name="q2" value="١٥٩٠"><span>١٥٩٠</span></label>
-          <label class="choice"><input type="radio" name="q2" value="١٤٨٠"><span>١٤٨٠</span></label>
-          <label class="choice"><input type="radio" name="q2" value="١٤٨٥"><span>١٤٨٥</span></label>
-          <label class="choice"><input type="radio" name="q2" value="١٤٧٠"><span>١٤٧٠</span></label>
-        </fieldset>
+  <!-- =========================
+       صفحة الاختبار
+       ========================= -->
+  <section class="card" id="quizCard">
 
-        <fieldset class="question" data-q="3">
-          <legend>السؤال ٣</legend>
-          <p class="prompt">ما الصيغة القياسية للعدد المُمثَّل في الجدول؟</p>
-          <img class="q-image" src="assets/question-03.png" alt="جدول القيمة المنزلية" onerror="this.hidden=true">
-          <label class="choice"><input type="radio" name="q3" value="١٣٨١"><span>١٣٨١</span></label>
-          <label class="choice"><input type="radio" name="q3" value="١٨١٣"><span>١٨١٣</span></label>
-          <label class="choice"><input type="radio" name="q3" value="١٣١٨"><span>١٣١٨</span></label>
-          <label class="choice"><input type="radio" name="q3" value="١٨٣١"><span>١٨٣١</span></label>
-        </fieldset>
+    <header>
+      <h1>اختبار قصير: القيمة المنزلية</h1>
+      <p class="subtitle">اختاري الإجابة الصحيحة</p>
+    </header>
 
-        <fieldset class="question" data-q="4">
-          <legend>السؤال ٤</legend>
-          <p class="prompt">ما الصيغة التحليلية للعدد ١٨١٣؟</p>
-          <label class="choice"><input type="radio" name="q4" value="١٠٠٠ + ٨٠٠ + ١٠ + ٣"><span>١٠٠٠ + ٨٠٠ + ١٠ + ٣</span></label>
-          <label class="choice"><input type="radio" name="q4" value="١٠٠٠ + ٨٠ + ١٠ + ٣"><span>١٠٠٠ + ٨٠ + ١٠ + ٣</span></label>
-          <label class="choice"><input type="radio" name="q4" value="١٠٠٠ + ٨٠٠ + ٣٠ + ١"><span>١٠٠٠ + ٨٠٠ + ٣٠ + ١</span></label>
-          <label class="choice"><input type="radio" name="q4" value="١٠٠ + ٨٠٠ + ١٠ + ٣"><span>١٠٠ + ٨٠٠ + ١٠ + ٣</span></label>
-        </fieldset>
+    <form id="quizForm" novalidate>
 
-        <fieldset class="question" data-q="5">
-          <legend>السؤال ٥</legend>
-          <p class="prompt">ما الصيغة اللفظية للعدد ١٨١٣؟</p>
-          <img class="q-image" src="assets/question-05.png" alt="صورة السؤال الخامس إن وجدت" onerror="this.hidden=true">
-          <label class="choice"><input type="radio" name="q5" value="ألفٌ وثمانمائةٍ وثلاثةَ عشر"><span>ألفٌ وثمانمائةٍ وثلاثةَ عشر</span></label>
-          <label class="choice"><input type="radio" name="q5" value="ألفٌ وثمانمائةٌ وثلاثون"><span>ألفٌ وثمانمائةٌ وثلاثون</span></label>
-          <label class="choice"><input type="radio" name="q5" value="ألفٌ وثمانمائةٌ وثلاثةٌ وعشرون"><span>ألفٌ وثمانمائةٌ وثلاثةٌ وعشرون</span></label>
-          <label class="choice"><input type="radio" name="q5" value="ألفٌ وسبعمائةٌ وثلاثةَ عشر"><span>ألفٌ وسبعمائةٌ وثلاثةَ عشر</span></label>
-        </fieldset>
+      <!-- اسم الطالبة -->
+      <label class="name-label" for="studentName">
+        اسم الطالبة
+      </label>
 
-        <fieldset class="question" data-q="6">
-          <legend>السؤال ٦</legend>
-          <p class="prompt">أحدِّدي اسم منزلة الرقم ٨ في العدد ٨٧٠، ثم اختاري قيمته المنزلية.</p>
-          <img class="q-image" src="assets/question-06.png" alt="صورة السؤال السادس إن وجدت" onerror="this.hidden=true">
-          <label class="choice"><input type="radio" name="q6" value="اسم المنزلة: الآحاد؛ القيمة المنزلية: ٨"><span>اسم المنزلة: الآحاد؛ القيمة المنزلية: ٨</span></label>
-          <label class="choice"><input type="radio" name="q6" value="اسم المنزلة: العشرات؛ القيمة المنزلية: ٨٠"><span>اسم المنزلة: العشرات؛ القيمة المنزلية: ٨٠</span></label>
-          <label class="choice"><input type="radio" name="q6" value="اسم المنزلة: المئات؛ القيمة المنزلية: ٨٠٠"><span>اسم المنزلة: المئات؛ القيمة المنزلية: ٨٠٠</span></label>
-          <label class="choice"><input type="radio" name="q6" value="اسم المنزلة: الألوف؛ القيمة المنزلية: ٨٠٠٠"><span>اسم المنزلة: الألوف؛ القيمة المنزلية: ٨٠٠٠</span></label>
-        </fieldset>
+      <input
+        id="studentName"
+        name="studentName"
+        type="text"
+        autocomplete="name"
+        required
+        maxlength="80"
+        placeholder="اكتبي اسمك هنا"
+      >
 
-        <fieldset class="question" data-q="7">
-          <legend>السؤال ٧</legend>
-          <p class="prompt">حوِّلي التعبير التالي إلى الصيغة القياسية: ٨٠٠ + ٥٠ + ٦</p>
-          <img class="q-image" src="assets/question-07.png" alt="صورة السؤال السابع إن وجدت" onerror="this.hidden=true">
-          <label class="choice"><input type="radio" name="q7" value="٥٨٦"><span>٥٨٦</span></label>
-          <label class="choice"><input type="radio" name="q7" value="٦٨٥"><span>٦٨٥</span></label>
-          <label class="choice"><input type="radio" name="q7" value="٨٦٥"><span>٨٦٥</span></label>
-          <label class="choice"><input type="radio" name="q7" value="٨٥٦"><span>٨٥٦</span></label>
-        </fieldset>
 
-        <fieldset class="question" data-q="8">
-          <legend>السؤال ٨</legend>
-          <p class="prompt">اختاري الإشارة المناسبة: ٧٦٥ ☐ ٦٥٧</p>
-          <label class="choice"><input type="radio" name="q8" value="&gt;"><span>أ) &gt;</span></label>
-          <label class="choice"><input type="radio" name="q8" value="&lt;"><span>ب) &lt;</span></label>
-          <label class="choice"><input type="radio" name="q8" value="="><span>ج) =</span></label>
-          <label class="choice"><input type="radio" name="q8" value="-"><span>د) −</span></label>
-        </fieldset>
+      <!-- =========================
+           السؤال ١
+           ========================= -->
+      <fieldset class="question" data-q="1">
 
-        <fieldset class="question" data-q="9">
-          <legend>السؤال ٩</legend>
-          <p class="prompt">قرِّبي العدد ٦٨٢ إلى أقرب مئة.</p>
-          <label class="choice"><input type="radio" name="q9" value="٦٠٠"><span>٦٠٠</span></label>
-          <label class="choice"><input type="radio" name="q9" value="٧٠٠"><span>٧٠٠</span></label>
-          <label class="choice"><input type="radio" name="q9" value="٦٨٠"><span>٦٨٠</span></label>
-          <label class="choice"><input type="radio" name="q9" value="٨٠٠"><span>٨٠٠</span></label>
-        </fieldset>
+        <legend>السؤال ١</legend>
 
-        <fieldset class="question" data-q="10">
-          <legend>السؤال ١٠</legend>
-          <p class="prompt">قرِّبي العدد ٣٠٤٩ إلى أقرب ألف.</p>
-          <label class="choice"><input type="radio" name="q10" value="٣٠٠٠"><span>٣٠٠٠</span></label>
-          <label class="choice"><input type="radio" name="q10" value="٤٠٠٠"><span>٤٠٠٠</span></label>
-          <label class="choice"><input type="radio" name="q10" value="٣١٠٠"><span>٣١٠٠</span></label>
-          <label class="choice"><input type="radio" name="q10" value="٢٠٠٠"><span>٢٠٠٠</span></label>
-        </fieldset>
+        <p class="prompt">
+          اكتبي العدد الذي يمثِّله النموذج الآتي.
+        </p>
 
-        <p class="error" id="error" role="alert" aria-live="polite"></p>
-        <div class="actions"><button type="submit">إنهاء الاختبار</button></div>
-      </form>
-      <p class="teacher">معلمة الرياضيات: أسماء آل عثمان</p>
-    </section>
+        <img
+          class="q-image"
+          src="assets/question-01.jpg"
+          alt="نموذج لوح مئات وأعمدة عشرات ومكعبات آحاد"
+          onerror="this.hidden=true"
+        >
 
-    <section class="card" id="resultCard" hidden aria-live="polite">
-      <header><h1>نتيجة الاختبار</h1></header>
-      <div class="result-top">
-        <h2 id="resultName"></h2>
-        <p class="score" id="score"></p>
-        <p class="feedback" id="feedback"></p>
+        <label class="choice">
+          <input type="radio" name="q1" value="١٩٢">
+          <span>١٩٢</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q1" value="٢٠٢">
+          <span>٢٠٢</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q1" value="٢١٢">
+          <span>٢١٢</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q1" value="٢٠٠">
+          <span>٢٠٠</span>
+        </label>
+
+      </fieldset>
+
+
+      <!-- =========================
+           السؤال ٢
+           ========================= -->
+      <fieldset class="question" data-q="2">
+
+        <legend>السؤال ٢</legend>
+
+        <p class="prompt">
+          اكتبي العدد الذي يمثِّله النموذج الآتي.
+        </p>
+
+        <img
+          class="q-image"
+          src="assets/question-02.jpg"
+          alt="نموذج للقيمة المنزلية"
+          onerror="this.hidden=true"
+        >
+
+        <label class="choice">
+          <input type="radio" name="q2" value="١٥٩٠">
+          <span>١٥٩٠</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q2" value="١٤٨٠">
+          <span>١٤٨٠</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q2" value="١٤٨٥">
+          <span>١٤٨٥</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q2" value="١٤٧٠">
+          <span>١٤٧٠</span>
+        </label>
+
+      </fieldset>
+
+
+      <!-- =========================
+           السؤال ٣
+           ========================= -->
+      <fieldset class="question" data-q="3">
+
+        <legend>السؤال ٣</legend>
+
+        <p class="prompt">
+          ما الصيغة القياسية للعدد المُمثَّل في الجدول؟
+        </p>
+
+        <img
+          class="q-image"
+          src="assets/question-03.jpg"
+          alt="جدول القيمة المنزلية"
+          onerror="this.hidden=true"
+        >
+
+        <label class="choice">
+          <input type="radio" name="q3" value="١٣٨١">
+          <span>١٣٨١</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q3" value="١٨١٣">
+          <span>١٨١٣</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q3" value="١٣١٨">
+          <span>١٣١٨</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q3" value="١٨٣١">
+          <span>١٨٣١</span>
+        </label>
+
+      </fieldset>
+
+
+      <!-- =========================
+           السؤال ٤ - بدون صورة
+           ========================= -->
+      <fieldset class="question" data-q="4">
+
+        <legend>السؤال ٤</legend>
+
+        <p class="prompt">
+          ما الصيغة التحليلية للعدد ١٨١٣؟
+        </p>
+
+        <label class="choice">
+          <input
+            type="radio"
+            name="q4"
+            value="١٠٠٠ + ٨٠٠ + ١٠ + ٣"
+          >
+          <span>١٠٠٠ + ٨٠٠ + ١٠ + ٣</span>
+        </label>
+
+        <label class="choice">
+          <input
+            type="radio"
+            name="q4"
+            value="١٠٠٠ + ٨٠ + ١٠ + ٣"
+          >
+          <span>١٠٠٠ + ٨٠ + ١٠ + ٣</span>
+        </label>
+
+        <label class="choice">
+          <input
+            type="radio"
+            name="q4"
+            value="١٠٠٠ + ٨٠٠ + ٣٠ + ١"
+          >
+          <span>١٠٠٠ + ٨٠٠ + ٣٠ + ١</span>
+        </label>
+
+        <label class="choice">
+          <input
+            type="radio"
+            name="q4"
+            value="١٠٠ + ٨٠٠ + ١٠ + ٣"
+          >
+          <span>١٠٠ + ٨٠٠ + ١٠ + ٣</span>
+        </label>
+
+      </fieldset>
+
+
+      <!-- =========================
+           السؤال ٥
+           ========================= -->
+      <fieldset class="question" data-q="5">
+
+        <legend>السؤال ٥</legend>
+
+        <p class="prompt">
+          ما الصيغة اللفظية للعدد ١٨١٣؟
+        </p>
+
+        <img
+          class="q-image"
+          src="assets/question-05.jpg"
+          alt="صورة السؤال الخامس"
+          onerror="this.hidden=true"
+        >
+
+        <label class="choice">
+          <input
+            type="radio"
+            name="q5"
+            value="ألفٌ وثمانمائةٍ وثلاثةَ عشر"
+          >
+          <span>ألفٌ وثمانمائةٍ وثلاثةَ عشر</span>
+        </label>
+
+        <label class="choice">
+          <input
+            type="radio"
+            name="q5"
+            value="ألفٌ وثمانمائةٌ وثلاثون"
+          >
+          <span>ألفٌ وثمانمائةٌ وثلاثون</span>
+        </label>
+
+        <label class="choice">
+          <input
+            type="radio"
+            name="q5"
+            value="ألفٌ وثمانمائةٌ وثلاثةٌ وعشرون"
+          >
+          <span>ألفٌ وثمانمائةٌ وثلاثةٌ وعشرون</span>
+        </label>
+
+        <label class="choice">
+          <input
+            type="radio"
+            name="q5"
+            value="ألفٌ وسبعمائةٌ وثلاثةَ عشر"
+          >
+          <span>ألفٌ وسبعمائةٌ وثلاثةَ عشر</span>
+        </label>
+
+      </fieldset>
+
+
+      <!-- =========================
+           السؤال ٦
+           ========================= -->
+      <fieldset class="question" data-q="6">
+
+        <legend>السؤال ٦</legend>
+
+        <p class="prompt">
+          أحدِّدي اسم منزلة الرقم ٨ في العدد ٨٧٠، ثم اختاري قيمته المنزلية.
+        </p>
+
+        <img
+          class="q-image"
+          src="assets/question-06.jpg"
+          alt="صورة السؤال السادس"
+          onerror="this.hidden=true"
+        >
+
+        <label class="choice">
+          <input
+            type="radio"
+            name="q6"
+            value="اسم المنزلة: الآحاد؛ القيمة المنزلية: ٨"
+          >
+          <span>
+            اسم المنزلة: الآحاد؛ القيمة المنزلية: ٨
+          </span>
+        </label>
+
+        <label class="choice">
+          <input
+            type="radio"
+            name="q6"
+            value="اسم المنزلة: العشرات؛ القيمة المنزلية: ٨٠"
+          >
+          <span>
+            اسم المنزلة: العشرات؛ القيمة المنزلية: ٨٠
+          </span>
+        </label>
+
+        <label class="choice">
+          <input
+            type="radio"
+            name="q6"
+            value="اسم المنزلة: المئات؛ القيمة المنزلية: ٨٠٠"
+          >
+          <span>
+            اسم المنزلة: المئات؛ القيمة المنزلية: ٨٠٠
+          </span>
+        </label>
+
+        <label class="choice">
+          <input
+            type="radio"
+            name="q6"
+            value="اسم المنزلة: الألوف؛ القيمة المنزلية: ٨٠٠٠"
+          >
+          <span>
+            اسم المنزلة: الألوف؛ القيمة المنزلية: ٨٠٠٠
+          </span>
+        </label>
+
+      </fieldset>
+
+
+      <!-- =========================
+           السؤال ٧
+           ========================= -->
+      <fieldset class="question" data-q="7">
+
+        <legend>السؤال ٧</legend>
+
+        <p class="prompt">
+          حوِّلي التعبير التالي إلى الصيغة القياسية:
+          ٨٠٠ + ٥٠ + ٦
+        </p>
+
+        <img
+          class="q-image"
+          src="assets/question-07.jpg"
+          alt="صورة السؤال السابع"
+          onerror="this.hidden=true"
+        >
+
+        <label class="choice">
+          <input type="radio" name="q7" value="٥٨٦">
+          <span>٥٨٦</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q7" value="٦٨٥">
+          <span>٦٨٥</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q7" value="٨٦٥">
+          <span>٨٦٥</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q7" value="٨٥٦">
+          <span>٨٥٦</span>
+        </label>
+
+      </fieldset>
+
+
+      <!-- =========================
+           السؤال ٨ - بدون صورة
+           ========================= -->
+      <fieldset class="question" data-q="8">
+
+        <legend>السؤال ٨</legend>
+
+        <p class="prompt">
+          اختاري الإشارة المناسبة:
+          ٧٦٥ ☐ ٦٥٧
+        </p>
+
+        <label class="choice">
+          <input type="radio" name="q8" value="&gt;">
+          <span>أ) &gt;</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q8" value="&lt;">
+          <span>ب) &lt;</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q8" value="=">
+          <span>ج) =</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q8" value="-">
+          <span>د) −</span>
+        </label>
+
+      </fieldset>
+
+
+      <!-- =========================
+           السؤال ٩ - بدون صورة
+           ========================= -->
+      <fieldset class="question" data-q="9">
+
+        <legend>السؤال ٩</legend>
+
+        <p class="prompt">
+          قرِّبي العدد ٦٨٢ إلى أقرب مئة.
+        </p>
+
+        <label class="choice">
+          <input type="radio" name="q9" value="٦٠٠">
+          <span>٦٠٠</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q9" value="٧٠٠">
+          <span>٧٠٠</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q9" value="٦٨٠">
+          <span>٦٨٠</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q9" value="٨٠٠">
+          <span>٨٠٠</span>
+        </label>
+
+      </fieldset>
+
+
+      <!-- =========================
+           السؤال ١٠ - بدون صورة
+           ========================= -->
+      <fieldset class="question" data-q="10">
+
+        <legend>السؤال ١٠</legend>
+
+        <p class="prompt">
+          قرِّبي العدد ٣٠٤٩ إلى أقرب ألف.
+        </p>
+
+        <label class="choice">
+          <input type="radio" name="q10" value="٢٠٠٠">
+          <span>٢٠٠٠</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q10" value="٣٠٠٠">
+          <span>٣٠٠٠</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q10" value="٤٠٠٠">
+          <span>٤٠٠٠</span>
+        </label>
+
+        <label class="choice">
+          <input type="radio" name="q10" value="٣٥٠٠">
+          <span>٣٥٠٠</span>
+        </label>
+
+      </fieldset>
+
+
+      <p class="error" id="error" role="alert" aria-live="polite"></p>
+
+      <div class="actions">
+        <button type="submit">
+          إنهاء الاختبار
+        </button>
       </div>
-      <div id="answers"></div>
-      <p class="teacher">معلمة الرياضيات: أسماء آل عثمان</p>
-    </section>
-    <iframe name="sheetFrame" id="sheetFrame" title="إرسال الإجابات" hidden></iframe>
-  </main>
-  <script>
-    // بعد نشر Code.gs كتطبيق ويب، ضعي رابط /exec بين علامتي الاقتباس.
-    const SHEETS_WEB_APP_URL = "";
-    const questions = [
-      { n:1, title:"العدد الذي يمثله النموذج", answer:"٢٠٢" },
-      { n:2, title:"العدد الذي يمثله النموذج", answer:"١٤٨٠" },
-      { n:3, title:"الصيغة القياسية في الجدول", answer:"١٨١٣" },
-      { n:4, title:"الصيغة التحليلية للعدد ١٨١٣", answer:"١٠٠٠ + ٨٠٠ + ١٠ + ٣" },
-      { n:5, title:"الصيغة اللفظية للعدد ١٨١٣", answer:"ألفٌ وثمانمائةٍ وثلاثةَ عشر" },
-      { n:6, title:"منزلة الرقم ٨ وقيمته في ٨٧٠", answer:"اسم المنزلة: المئات؛ القيمة المنزلية: ٨٠٠" },
-      { n:7, title:"الصيغة القياسية للتعبير ٨٠٠ + ٥٠ + ٦", answer:"٨٥٦" },
-      { n:8, title:"الإشارة المناسبة بين ٧٦٥ و٦٥٧", answer:">" },
-      { n:9, title:"تقريب ٦٨٢ إلى أقرب مئة", answer:"٧٠٠" },
-      { n:10, title:"تقريب ٣٠٤٩ إلى أقرب ألف", answer:"٣٠٠٠" }
-    ];
-    const form = document.getElementById("quizForm");
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      const error = document.getElementById("error");
-      const name = document.getElementById("studentName").value.trim();
-      if (!name) { error.textContent = "اكتبي اسمك أولاً."; document.getElementById("studentName").focus(); return; }
-      const responses = {};
-      for (const q of questions) {
-        const selected = form.querySelector(`input[name="q${q.n}"]:checked`);
-        if (!selected) { error.textContent = `أجيبي عن السؤال ${toArabicDigits(q.n)} قبل إنهاء الاختبار.`; document.querySelector(`[data-q="${q.n}"]`).scrollIntoView({behavior:"smooth", block:"center"}); return; }
-        responses[`q${q.n}`] = selected.value;
+
+    </form>
+
+    <p class="teacher">
+      معلمة الرياضيات: أسماء آل عثمان
+    </p>
+
+  </section>
+
+
+  <!-- =========================
+       صفحة النتيجة
+       ========================= -->
+  <section class="card" id="resultCard" hidden aria-live="polite">
+
+    <header>
+      <h1>نتيجة الاختبار</h1>
+    </header>
+
+    <div class="result-top">
+
+      <h2 id="resultName"></h2>
+
+      <p class="score" id="score"></p>
+
+      <p class="feedback" id="feedback"></p>
+
+    </div>
+
+    <div id="answers"></div>
+
+    <p class="teacher">
+      معلمة الرياضيات: أسماء آل عثمان
+    </p>
+
+  </section>
+
+
+  <!-- إطار مخفي لإرسال البيانات إلى Google Sheets -->
+  <iframe
+    name="sheetFrame"
+    id="sheetFrame"
+    title="إرسال الإجابات"
+    hidden>
+  </iframe>
+
+</main>
+
+
+<script>
+
+  /*
+  =====================================================
+  رابط Google Sheets / Google Apps Script
+  =====================================================
+
+  بعد نشر Code.gs كتطبيق ويب:
+  ضعي رابط /exec بين علامتي الاقتباس.
+
+  مثال:
+  const SHEETS_WEB_APP_URL =
+  "https://script.google.com/macros/s/XXXXXXXX/exec";
+  */
+
+  const SHEETS_WEB_APP_URL = "";
+
+
+  /*
+  =====================================================
+  الأسئلة والإجابات الصحيحة
+  =====================================================
+  */
+
+  const questions = [
+
+    {
+      n:1,
+      title:"العدد الذي يمثله النموذج",
+      answer:"٢٠٢"
+    },
+
+    {
+      n:2,
+      title:"العدد الذي يمثله النموذج",
+      answer:"١٤٨٠"
+    },
+
+    {
+      n:3,
+      title:"الصيغة القياسية في الجدول",
+      answer:"١٨١٣"
+    },
+
+    {
+      n:4,
+      title:"الصيغة التحليلية للعدد ١٨١٣",
+      answer:"١٠٠٠ + ٨٠٠ + ١٠ + ٣"
+    },
+
+    {
+      n:5,
+      title:"الصيغة اللفظية للعدد ١٨١٣",
+      answer:"ألفٌ وثمانمائةٍ وثلاثةَ عشر"
+    },
+
+    {
+      n:6,
+      title:"منزلة الرقم ٨ وقيمته في ٨٧٠",
+      answer:"اسم المنزلة: المئات؛ القيمة المنزلية: ٨٠٠"
+    },
+
+    {
+      n:7,
+      title:"الصيغة القياسية للتعبير ٨٠٠ + ٥٠ + ٦",
+      answer:"٨٥٦"
+    },
+
+    {
+      n:8,
+      title:"الإشارة المناسبة بين ٧٦٥ و٦٥٧",
+      answer:">"
+    },
+
+    {
+      n:9,
+      title:"تقريب ٦٨٢ إلى أقرب مئة",
+      answer:"٧٠٠"
+    },
+
+    {
+      n:10,
+      title:"تقريب ٣٠٤٩ إلى أقرب ألف",
+      answer:"٣٠٠٠"
+    }
+
+  ];
+
+
+  /*
+  =====================================================
+  إرسال الاختبار
+  =====================================================
+  */
+
+  const form = document.getElementById("quizForm");
+
+  form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const error = document.getElementById("error");
+
+    const name =
+      document.getElementById("studentName").value.trim();
+
+
+    /*
+    التأكد من كتابة اسم الطالبة
+    */
+
+    if (!name) {
+
+      error.textContent =
+        "اكتبي اسمك أولاً.";
+
+      document
+        .getElementById("studentName")
+        .focus();
+
+      return;
+    }
+
+
+    /*
+    تخزين إجابات الطالبة
+    */
+
+    const responses = {};
+
+
+    /*
+    التأكد من الإجابة عن جميع الأسئلة
+    */
+
+    for (const q of questions) {
+
+      const selected =
+        form.querySelector(
+          `input[name="q${q.n}"]:checked`
+        );
+
+
+      if (!selected) {
+
+        error.textContent =
+          `أجيبي عن السؤال ${toArabicDigits(q.n)} قبل إنهاء الاختبار.`;
+
+        document
+          .querySelector(`[data-q="${q.n}"]`)
+          .scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+          });
+
+        return;
       }
-      error.textContent = "";
-      const score = questions.reduce((sum, q) => sum + (responses[`q${q.n}`] === q.answer ? 1 : 0), 0);
-      showResult(name, responses, score);
-      saveResponse({ name, score, answers: questions.map(q => responses[`q${q.n}`]) });
-      window.scrollTo({ top:0, behavior:"smooth" });
+
+
+      responses[`q${q.n}`] =
+        selected.value;
+
+    }
+
+
+    error.textContent = "";
+
+
+    /*
+    حساب الدرجة
+    كل سؤال = درجة واحدة
+    */
+
+    const score =
+      questions.reduce(
+        (sum, q) =>
+          sum +
+          (
+            responses[`q${q.n}`] === q.answer
+              ? 1
+              : 0
+          ),
+        0
+      );
+
+
+    /*
+    عرض النتيجة
+    */
+
+    showResult(
+      name,
+      responses,
+      score
+    );
+
+
+    /*
+    إرسال البيانات إلى Google Sheets
+    */
+
+    saveResponse({
+      name,
+      score,
+      answers:
+        questions.map(
+          q => responses[`q${q.n}`]
+        )
     });
-    function showResult(name, responses, score) {
-      document.getElementById("quizCard").hidden = true;
-      document.getElementById("resultCard").hidden = false;
-      document.getElementById("resultName").textContent = `أحسنتِ يا ${name}`;
-      document.getElementById("score").textContent = `درجتك: ${toArabicDigits(score)}`;
-      let encouragement;
-      if (score === 10) encouragement = "ممتازة! إتقان رائع للقيمة المنزلية، استمري بهذا التألق.";
-      else if (score >= 8) encouragement = "رائعة! فهمك ممتاز، ومراجعة بسيطة ستوصلك إلى الإتقان الكامل.";
-      else if (score >= 6) encouragement = "أداء جيد! تابعي التدريب على القيمة المنزلية، فأنتِ تتقدمين.";
-      else encouragement = "بداية موفقة! راجعي الإجابات وتدرّبي مرة أخرى، وأنتِ قادرة على التحسن.";
-      document.getElementById("feedback").textContent = encouragement;
-      const list = document.getElementById("answers");
-      questions.forEach(q => {
-        const chosen = responses[`q${q.n}`];
-        const correct = chosen === q.answer;
-        const row = document.createElement("article");
-        row.className = `answer-row ${correct ? "correct" : "incorrect"}`;
-        const title = document.createElement("h3");
-        title.textContent = `السؤال ${toArabicDigits(q.n)}: ${q.title}`;
-        const chosenLine = document.createElement("p");
-        chosenLine.textContent = `إجابتك: ${chosen}`;
-        chosenLine.className = correct ? "correct-text" : "incorrect-text";
-        row.append(title, chosenLine);
-        if (!correct) {
-          const correctLine = document.createElement("p");
-          correctLine.textContent = `الإجابة الصحيحة: ${q.answer}`;
-          correctLine.className = "correct-text";
-          row.append(correctLine);
-        }
-        list.append(row);
-      });
+
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  });
+
+
+  /*
+  =====================================================
+  عرض النتيجة والتشجيع
+  =====================================================
+  */
+
+  function showResult(
+    name,
+    responses,
+    score
+  ) {
+
+    document
+      .getElementById("quizCard")
+      .hidden = true;
+
+
+    document
+      .getElementById("resultCard")
+      .hidden = false;
+
+
+    document
+      .getElementById("resultName")
+      .textContent =
+        `أحسنتِ يا ${name}`;
+
+
+    document
+      .getElementById("score")
+      .textContent =
+        `درجتك: ${toArabicDigits(score)} من ١٠`;
+
+
+    let encouragement;
+
+
+    if (score === 10) {
+
+      encouragement =
+        "ممتازة! 🌟 إتقان رائع للقيمة المنزلية، استمري بهذا التألق.";
+
     }
-    function saveResponse(record) {
-      if (!SHEETS_WEB_APP_URL) return;
-      const target = document.createElement("form");
-      target.method = "POST";
-      target.action = SHEETS_WEB_APP_URL;
-      target.target = "sheetFrame";
-      const field = document.createElement("input");
-      field.type = "hidden";
-      field.name = "payload";
-      field.value = JSON.stringify(record);
-      target.append(field);
-      document.body.append(target);
-      target.submit();
-      target.remove();
+
+    else if (score >= 8) {
+
+      encouragement =
+        "رائعة! 👏 فهمك ممتاز، ومراجعة بسيطة ستوصلك إلى الإتقان الكامل.";
+
     }
-    function toArabicDigits(value) { return String(value).replace(/[0-9]/g, d => "٠١٢٣٤٥٦٧٨٩"[Number(d)]); }
-  </script>
+
+    else if (score >= 6) {
+
+      encouragement =
+        "أداء جيد! 💜 تابعي التدريب على القيمة المنزلية، فأنتِ تتقدمين.";
+
+    }
+
+    else if (score >= 4) {
+
+      encouragement =
+        "بداية موفقة! 🌷 راجعي بعض المهارات وتدرّبي مرة أخرى.";
+
+    }
+
+    else {
+
+      encouragement =
+        "لا بأس! 💪 راجعي الدرس وتدرّبي مرة أخرى، وأنتِ قادرة على التحسن.";
+
+    }
+
+
+    document
+      .getElementById("feedback")
+      .textContent =
+        encouragement;
+
+
+    /*
+    عرض إجابات الطالبة
+    */
+
+    const list =
+      document.getElementById("answers");
+
+
+    list.innerHTML = "";
+
+
+    questions.forEach(q => {
+
+      const chosen =
+        responses[`q${q.n}`];
+
+      const correct =
+        chosen === q.answer;
+
+
+      const row =
+        document.createElement("article");
+
+
+      row.className =
+        `answer-row ${
+          correct
+            ? "correct"
+            : "incorrect"
+        }`;
+
+
+      const title =
+        document.createElement("h3");
+
+
+      title.textContent =
+        `السؤال ${toArabicDigits(q.n)}: ${q.title}`;
+
+
+      const chosenLine =
+        document.createElement("p");
+
+
+      chosenLine.textContent =
+        `إجابتك: ${chosen}`;
+
+
+      chosenLine.className =
+        correct
+          ? "correct-text"
+          : "incorrect-text";
+
+
+      row.append(
+        title,
+        chosenLine
+      );
+
+
+      /*
+      إذا كانت الإجابة خاطئة،
+      تظهر الإجابة الصحيحة.
+      */
+
+      if (!correct) {
+
+        const correctLine =
+          document.createElement("p");
+
+
+        correctLine.textContent =
+          `الإجابة الصحيحة: ${q.answer}`;
+
+
+        correctLine.className =
+          "correct-text";
+
+
+        row.append(correctLine);
+
+      }
+
+
+      list.append(row);
+
+    });
+
+  }
+
+
+  /*
+  =====================================================
+  إرسال البيانات إلى Google Sheets
+  =====================================================
+  */
+
+  function saveResponse(record) {
+
+    /*
+    إذا لم تضعي رابط Google Apps Script،
+    لن يتم إرسال البيانات.
+    */
+
+    if (!SHEETS_WEB_APP_URL) {
+      return;
+    }
+
+
+    const target =
+      document.createElement("form");
+
+
+    target.method = "POST";
+
+
+    target.action =
+      SHEETS_WEB_APP_URL;
+
+
+    target.target =
+      "sheetFrame";
+
+
+    const field =
+      document.createElement("input");
+
+
+    field.type =
+      "hidden";
+
+
+    field.name =
+      "payload";
+
+
+    field.value =
+      JSON.stringify(record);
+
+
+    target.append(field);
+
+
+    document.body.append(target);
+
+
+    target.submit();
+
+
+    target.remove();
+
+  }
+
+
+  /*
+  =====================================================
+  تحويل الأرقام الإنجليزية إلى عربية
+  =====================================================
+  */
+
+  function toArabicDigits(value) {
+
+    return String(value).replace(
+      /[0-9]/g,
+      d => "٠١٢٣٤٥٦٧٨٩"[Number(d)]
+    );
+
+  }
+
+</script>
+
 </body>
 </html>
